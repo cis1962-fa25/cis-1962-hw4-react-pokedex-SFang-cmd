@@ -179,27 +179,6 @@ export class PokemonAPI {
       throw new Error(`${response.status} ${error.code}: ${error.message}`);
     }
   }
-
-  /**
-   * Delete all Box entries for the authenticated user
-   */
-  async clearAllBoxEntries(): Promise<void> {
-    if (!this.token) {
-      throw new Error('Authentication token required. Please set token with setToken().');
-    }
-
-    const response = await fetch(`${BASE_URL}/box/`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(`${response.status} ${error.code}: ${error.message}`);
-    }
-  }
 }
 
 // Export a singleton instance
